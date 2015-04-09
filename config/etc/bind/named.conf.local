@@ -1,0 +1,19 @@
+include "/etc/bind/rndc.key";
+
+controls {
+        inet 127.0.0.1 allow { localhost; } keys { "rndc-key"; };
+};
+
+// forward zone
+zone "gassnertech.com" {
+        type master;
+        file "/etc/bind/db.gassnertech.com";
+        allow-update { key "rndc-key"; };
+};
+
+// reverse zone
+zone "121.31.176.in-addr.arpa" {
+        type master;
+        file "/etc/bind/db.121.31.176";
+        allow-update { key "rndc-key"; };
+};
