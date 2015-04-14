@@ -12,6 +12,5 @@ ADD ./config/etc/bind/* /etc/bind/
 EXPOSE 53
 VOLUME /data
 
-COPY run.sh ./run.sh
-RUN chmod +x ./run.sh
-CMD ./run.sh
+RUN chmod 775 -R /etc/bind
+CMD ["/usr/sbin/named", "-g"]
